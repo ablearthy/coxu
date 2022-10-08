@@ -1,4 +1,5 @@
-module Coxu.Base.Ternary where
+{-# LANGUAGE TypeApplications #-}
+module Coxu.Base.Ternary (from10, to10, BTern (..), Trit (..) ) where
 
 data Trit = N | Z | P deriving (Show, Eq)
 
