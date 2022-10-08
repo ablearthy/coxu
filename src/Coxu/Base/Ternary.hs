@@ -42,3 +42,18 @@ from10 num
       | n `mod` 3 == 0 = from10' (b:acc) Z (n `div` 3)
       | n `mod` 3 == 1 = from10' (fst (tritPlus P b):acc) (snd (tritPlus P b)) (n `div` 3)
       | otherwise      = from10' (fst (tritPlus N b):acc) P (n `div` 3)
+
+
+liftBinaryOp :: (Num a, Integral b) => BTern -> BTern -> (a -> a -> b) -> BTern
+liftBinaryOp x y op = from10 $ op (to10 x) (to10 y)
+
+liftUnaryOp :: (Num a, Integral b) => BTern -> (a -> b) -> BTern
+liftUnaryOp x op = from10 $ op (to10 x)
+
+instance Num BTern where
+  x + y = liftBinaryOp @Integer x y (+)
+  x * y = liftBinaryOp @Integer x y (*)
+  abs x = liftUnaryOp @Integer x abs
+  signum x = liftUnaryOp @Integer x signum
+  fromInteger = from10
+  negate (BTern ts) = BTern $ map tritInverse ts
