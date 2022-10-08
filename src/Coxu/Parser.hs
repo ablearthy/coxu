@@ -32,7 +32,7 @@ parens :: Parser a -> Parser a
 parens = between (lexeme (char '(')) (lexeme (char ')'))
 
 data Term
-  = DecTerm Int
+  = DecTerm Integer
   | TernTerm BT.BTern
   | ParensExpr Expr
   deriving (Show, Eq)

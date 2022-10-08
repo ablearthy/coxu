@@ -5,7 +5,7 @@ import Coxu.Base.Ternary (to10)
 
 
 evalTerm :: Term -> Integer
-evalTerm (DecTerm t) = toInteger t
+evalTerm (DecTerm t) = t
 evalTerm (TernTerm t) = to10 t
 evalTerm (ParensExpr e) = eval e
 
