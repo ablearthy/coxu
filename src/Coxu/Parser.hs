@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Coxu.Parser (Expr (..), exprP ) where
+module Coxu.Parser (Expr (..), Term (..), exprP ) where
 
 import qualified Data.Text as T
 import Data.Void
