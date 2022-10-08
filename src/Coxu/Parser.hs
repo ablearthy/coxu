@@ -33,11 +33,11 @@ data Term
   deriving (Show, Eq)
 
 data Expr
-  = ExprAdd  Term Term
-  | ExprSub  Term Term
-  | ExprNeg  Term
-  | ExprMul  Term Term
-  | ExprDiv  Term Term
+  = ExprAdd  Expr Expr
+  | ExprSub  Expr Expr
+  | ExprNeg  Expr
+  | ExprMul  Expr Expr
+  | ExprDiv  Expr Expr
   | ExprTerm Term
   deriving (Show, Eq)
 
