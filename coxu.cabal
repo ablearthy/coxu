@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Coxu.Base.Ternary
       Lib
   other-modules:
       Paths_coxu
