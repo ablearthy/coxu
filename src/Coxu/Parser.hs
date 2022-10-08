@@ -10,6 +10,8 @@ import qualified Text.Megaparsec.Char.Lexer as L
 
 import qualified Coxu.Base.Ternary as BT
 
+import Control.Monad.Combinators.Expr
+
 
 type Parser = Parsec Void T.Text
 
@@ -68,4 +70,16 @@ termP = DecTerm <$> L.decimal
   <|> (ParensExpr <$> parens exprP)
 
 exprP :: Parser Expr
-exprP = undefined
+exprP = makeExprParser (ExprTerm <$> lexeme termP)
+  [ [ prefix "-" ExprNeg 
+    , prefix "+" id ]
+  , [ binary "*" ExprMul 
+    , binary "/" ExprDiv ]
+  , [ binary "+" ExprAdd 
+    , binary "-" ExprSub ] ]
+
+binary :: T.Text -> (Expr -> Expr -> Expr) -> Operator Parser Expr
+binary  name f = InfixL  (f <$ symbol name)
+
+prefix :: T.Text -> (Expr -> Expr) -> Operator Parser Expr
+prefix  name f = Prefix  (f <$ symbol name)
