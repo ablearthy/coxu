@@ -44,5 +44,22 @@ data Expr
   | ExprTerm Term
   deriving (Show, Eq)
 
+bTernP :: Parser BT.BTern
+bTernP = mkTern <$> (char 't' *> takeWhile1P (Just "trit") isTrit)
+  where
+    isTrit :: Char -> Bool
+    isTrit '-' = True
+    isTrit '0' = True
+    isTrit '+' = True
+    isTrit _   = False
+
+    mkTern :: T.Text -> BT.BTern
+    mkTern = BT.BTern . T.foldl' processChar []
+    
+    processChar :: [BT.Trit] -> Char -> [BT.Trit]
+    processChar xs '-' = BT.N:xs
+    processChar xs '+' = BT.P:xs
+    processChar xs '0' = BT.Z:xs
+    processChar xs _   = xs
 exprP :: Parser Expr
 exprP = undefined
