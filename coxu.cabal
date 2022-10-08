@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Coxu.Base.Ternary
+      Coxu.Eval
       Coxu.Parser
       Lib
   other-modules:
