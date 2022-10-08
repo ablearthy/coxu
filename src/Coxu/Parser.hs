@@ -61,5 +61,11 @@ bTernP = mkTern <$> (char 't' *> takeWhile1P (Just "trit") isTrit)
     processChar xs '+' = BT.P:xs
     processChar xs '0' = BT.Z:xs
     processChar xs _   = xs
+
+termP :: Parser Term
+termP = DecTerm <$> L.decimal
+  <|> (TernTerm <$> bTernP)
+  <|> (ParensExpr <$> parens exprP)
+
 exprP :: Parser Expr
 exprP = undefined
