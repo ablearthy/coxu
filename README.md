@@ -15,3 +15,4 @@ $ stack run
   Base 3: +-0
 ```
 
+![Usage](./assets/usage.png)
