@@ -1,6 +1,6 @@
 # coxu
 
-Yet another calculator that supports *base 3*
+*Yet another* calculator that supports **base 3**
 
 ## Usage
 1. `stack run` (or run binary)
