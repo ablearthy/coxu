@@ -1,0 +1,3 @@
+[submodule "packages/text"]
+	path = packages/text
+	url = https://github.com/haskell/text
